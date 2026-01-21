@@ -17,6 +17,7 @@ export function useTheme(){
 
     useEffect(()=>{
         const root = window.document.documentElement;
+        console.log(theme);
         if(theme==="dark")
         {
             root.classList.add("dark");

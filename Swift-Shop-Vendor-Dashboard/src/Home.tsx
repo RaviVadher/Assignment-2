@@ -75,11 +75,14 @@ const Home: React.FC = () => {
    return (
       <><div>
          <nav className="bg-blue-400  shadow fixed top-0 left-0 w-full z-10">
-            <div className="text-xl font-bold text-black-500"><h2>Swift Shop</h2></div>
-
+            <div className="flex items-center justify-between px-6 py-3">
+            <div><h2>Swift Shop</h2>
             <span className="text-sm text-gray-800"> Inventory Dashboard</span>
-            <div className="left-10"><ThemeToggle/></div>
+            </div>
+
             
+            <ThemeToggle/>
+            </div>
          </nav>
 
       </div>
@@ -112,30 +115,7 @@ const Home: React.FC = () => {
          <ProductList/>
        
 <hr />
-         {/* <div className="min-h-screen bg-gray-100 p-6">
-            <div>
-
-
-               {listproduct.length === 0 ? (
-                  <p className="text-center text-gray-400">No items yet</p>
-               ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                     {listproduct.map((item) => (
-                        <div key={item.id} className="bg-white rounded-xl shadow p-5 flex flex-col justify-between">
-                           <div>
-                              <h2 className="text-xl font-semibold mb-2">NAME:{item.ProductName}</h2>
-                              <p className="text-gray-600">Catagory:{item.Catagory}</p>
-                              <p className="text-gray-600">Price:{item.Price}</p>
-                              <p className="text-gray-600">Stock:{item.Stock}</p>
-
-                              <button onClick={() => deleteItem(item.id)} className="mt-4 text bg-red-400  border border-roundedhover:underline self-start">Delete</button>
-                           </div>
-                        </div>
-                     ))}
-                  </div>
-               )}
-            </div>
-         </div> */}
+        
 
 
       </>

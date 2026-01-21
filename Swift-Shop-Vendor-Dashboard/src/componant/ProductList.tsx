@@ -1,11 +1,18 @@
 import React,{useState, useEffect} from "react";
 import Cards from "./Cards";
 
+interface Product{
+    id:number;
+    title:string;
+    category:string;
+    price:number;
+}
+
 export default function ProductList()
 {
-    const[product,setProduct] = useState([]);
+    const[product,setProduct] = useState<Product[]>([]);
     const[loading, setLoading] = useState(true);
-    const[error, setError] = useState(null);
+    const[error, setError] = useState<string | null>(null);
 
    
     useEffect(()=>{
@@ -14,14 +21,14 @@ export default function ProductList()
          try{
             console.log("fetch data")
             const res = await fetch("https://dummyjson.com/products");
-            console.log(res.json());
             if(!res.ok) throw new Error(`error:${res.status}`);
-             const data = await res.json();
-             setProduct(data);
+            const data = await res.json();
+            console.log(data);
+             setProduct(data.products);
         }
-        catch(err)
+        catch(err:any)
         {
-            // setError(err.message);
+             setError(err.message);
         }
         finally{
             setLoading(false);
@@ -32,13 +39,13 @@ export default function ProductList()
     },[]);
     
 
-    if(loading) return <p>{product} Loading Products</p>
-    if(error)  return <p className="bg-red-700 text-black"> Error</p>
+    if(loading) return <p> Loading Products</p>
+    if(error)  return <p className="bg-red-700 text-black"> {error}</p>
 
     return(
         <>
            <div className="min-h-screen bg-gray-100 p-6">
-            <div>
+            <div className="gri grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 
                {product.length === 0 ? (
@@ -46,9 +53,10 @@ export default function ProductList()
                ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                      {product.map((item) => (
-                        <Cards id={item.id}
+                        <Cards  key = {item.id}
+                               id={item.id}
                                  name={item.title}
-                                 catogory={item.category}
+                                 category={item.category}
                                  price ={item.price}
                                  />
                      ))}
